@@ -1,0 +1,3 @@
+#! /bin/sh
+flags=-c
+/usr/sbin/tmpwatch "$flags" -x /home/dumpuser/.ssh/ -X "/home/dumpuser/.*" 10d /home/dumpuser
