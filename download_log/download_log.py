@@ -7,6 +7,7 @@ import pwd
 import re
 
 import boto3
+import docopt
 
 # boto3.set_stream_logger(level=logging.DEBUG)
 # boto3.set_stream_logger(level=logging.DEBUG, name='botocore')
@@ -18,8 +19,8 @@ ENV_PREFIX = LOG_PREFIX + "e-qy2e34tuxh/"
 TARGET_BUCKET_NAME = "ceebman"
 TARGET_PREFIX = "logs/ceebadmin"
 
-LOG_OWNER = "ark"
-LOCAL_LOG_ROOT_DIR = '/home/loguser'
+LOG_OWNER = "loguser"
+LOCAL_LOG_ROOT_DIR = '/mnt/log/logs'
 LOCAL_LOG_DIR = LOCAL_LOG_ROOT_DIR + '/ceebadmin'
 
 LOG_FILENAME_REGEX = re.compile("([0-9a-zA-Z\-\_\.]+)([0-9]{10})\.gz")
