@@ -1,0 +1,4 @@
+#!/bin/bash
+export AWS_CONFIG_FILE="/root/.aws/config"
+/root/download_logs.py >> /root/logs/download_log.log 2>&1
+/root/download_logs_upgrid.py >> /root/logs/download_log_upgrid.log 2>&1

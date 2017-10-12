@@ -1,0 +1,1 @@
+Periodically download rotated log files from S3 to local, and make copy to a different S3 bucket.
