@@ -19,8 +19,6 @@ def export(startTime, endTime):
         destinationPrefix = 'export_logs'
     )
 
-    print(response)
-
     export_task = {}
     export_task['taskId'] = response['taskId']
     #export_task['logStreamNamePrefix'] = logStreamNamePrefix
