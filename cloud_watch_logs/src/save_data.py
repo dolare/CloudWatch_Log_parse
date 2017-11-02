@@ -8,8 +8,10 @@ def save_as_excel(data_list):#data is a list, each element is a list too, the le
         excel_name = None
         for record in data:
             for k,v in record.items():
-                if k == 'gradet' and 'CUSTOMER_NAME' in record[k].keys():
-                    record[k] = record[k]['CUSTOMER_NAME']
+                if k == 'gradet' and 'CUSTOMER_EMAIL' in record[k].keys():
+                    record[k] = record[k]['CUSTOMER_EMAIL']
+                elif k == 'gradet' and not 'CUSTOMER_EMAIL' in record[k].keys():
+                    record[k] = None
                 if k == 'api_start_time':
                     arr = v.split('T')
                     arr0 = arr[0].split('-')
@@ -26,7 +28,7 @@ def save_as_excel(data_list):#data is a list, each element is a list too, the le
 
         df = pd.DataFrame(data=data)
 
-        
+
         writer = pd.ExcelWriter(os.path.dirname(__file__) + '/tmp/' + excel_name +'.xlsx', engine='xlsxwriter')
         df.to_excel(writer,sheet_name='Sheet1')
 
