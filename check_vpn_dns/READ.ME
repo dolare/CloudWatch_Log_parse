@@ -1,0 +1,37 @@
+
+This function is used to periodically check corp office's public IP address, and authorize network
+access from this public address to internal only website, such as Admin website.
+
+
+It's running in AWS Lambda, with configuration:
+
+runtime: Python 2.7
+handler: lambda_function.handler
+environment variable:
+  site : the DNS name corp office has, such as "gridology.jumpingcrab.com"
+  groups : the Security Group ID lists that need to be updated
+  s3_bucket :  S3 bucket where the current IP address file 'whitelist_ip' is hosted
+  s3_key : optional file name, default is "whitelist_ip"
+
+trigger: CloudWatch events, every 15 mins
+  example policy:
+    {
+        "Version": "2012-10-17",
+        "Id": "default",
+        "Statement": [
+            {
+                "Sid": "lc-b6362809-8d87-4a7e-ad10-022116ff3e81",
+                "Effect": "Allow",
+                "Principal": {
+                    "Service": "events.amazonaws.com"
+                },
+                "Action": "lambda:InvokeFunction",
+                "Resource": "arn:aws:lambda:us-east-1:952527030977:function:check_dns",
+                "Condition": {
+                    "ArnLike": {
+                        "AWS:SourceArn": "arn:aws:events:us-east-1:952527030977:rule/check-dns"
+                    }
+                }
+            }
+        ]
+    }
